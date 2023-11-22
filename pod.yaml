@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
   - name: holidayapi
-    image: 140994323853.dkr.ecr.us-west-2.amazonaws.com/dreamteam:v2
+    image: 140994323853.dkr.ecr.us-west-2.amazonaws.com/dreamteam:v4
     ports:
     - containerPort: 8080
