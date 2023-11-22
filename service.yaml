@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: holidayapi-service
+spec:
+  type: nodePort
+  selector:
+    name: holiday-app
+  ports:
+    - nodePort: 30165
+      port: 8080
+      targetPort: 8080
