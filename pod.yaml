@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: holidayapi
+  namespace: demo
+spec:
+  serviceAccountName: holiday-app
+  containers:
+  - name: holidayapi
+    image: 005352299461.dkr.ecr.eu-north-1.amazonaws.com/aussie-holiday-api:v1
+    ports:
+    - containerPort: 8080

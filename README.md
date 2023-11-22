@@ -48,26 +48,6 @@ jurisdiction varchar(3)
 \COPY holiday_info FROM /home/ssm-user/data.csv DELIMITER ',' CSV HEADER;
 
 
-
-## Dockerfile
-
-FROM public.ecr.aws/amazoncorretto/amazoncorretto:17.0.9-al2-native-headless
-WORKDIR /app
-COPY ./aussie-holiday-api/target/aussie-holiday-api-1.0-SNAPSHOT.jar /app
-
-EXPOSE 8080
-
-CMD ["java", "-jar", "/app/aussie-holiday-api-1.0-SNAPSHOT.jar"]
-
-
-
-?? How to build docker 
-Create an ECR repository 
-
-docker build -t <your-repo-name> .
-
-aws ecr get-login-password  | docker login --username AWS --password-stdin <your-account>.dkr.ecr.us-west-2.amazonaws.com
-
-
-docker tag aussie-holiday-api <your-account>.dkr.ecr.us-west-2.amazonaws.com/<your-repo-name>:v1                                                                            
-docker push <your-account>.dkr.ecr.us-west-2.amazonaws.com/<your-repo-name>:v1
+docker pull <your-account>.dkr.ecr.us-west-2.amazonaws.com/<your-repo-name>:v1
+docker images
+docker run -p 8080:8080 <image-id>
