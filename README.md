@@ -3,7 +3,9 @@
 ## Check if java, mvn and docker installed 
 
 java -version
+
 mvn -version 
+
 docker -version 
 
 
@@ -12,13 +14,17 @@ docker -version
 
 
 sudo yum -y update
+
 sudo yum install java-17-amazon-corretto.x86_64
 
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+
 sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+
 sudo yum install -y apache-maven
 
 
+sudo yum install -y postgresql
 
 
 
@@ -40,3 +46,28 @@ jurisdiction varchar(3)
 
 
 \COPY holiday_info FROM /home/ssm-user/data.csv DELIMITER ',' CSV HEADER;
+
+
+
+## Dockerfile
+
+FROM public.ecr.aws/amazoncorretto/amazoncorretto:17.0.9-al2-native-headless
+WORKDIR /app
+COPY ./aussie-holiday-api/target/aussie-holiday-api-1.0-SNAPSHOT.jar /app
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "/app/aussie-holiday-api-1.0-SNAPSHOT.jar"]
+
+
+
+?? How to build docker 
+Create an ECR repository 
+
+docker build -t <your-repo-name> .
+
+aws ecr get-login-password  | docker login --username AWS --password-stdin <your-account>.dkr.ecr.us-west-2.amazonaws.com
+
+
+docker tag aussie-holiday-api <your-account>.dkr.ecr.us-west-2.amazonaws.com/<your-repo-name>:v1                                                                            
+docker push <your-account>.dkr.ecr.us-west-2.amazonaws.com/<your-repo-name>:v1
