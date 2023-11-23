@@ -40,7 +40,6 @@ kind: Deployment
 metadata:
   name: holiday-api-deployment
 spec:
-  serviceAccountName: holiday-app-sa
   selector:
     matchLabels:
       app: holiday-api
@@ -50,6 +49,7 @@ spec:
       labels:
         app: holiday-api
     spec:
+      serviceAccountName: holiday-app-sa
       containers:
       - name: holiday-api
         image: 140994323853.dkr.ecr.us-west-2.amazonaws.com/dreamteam:v5
