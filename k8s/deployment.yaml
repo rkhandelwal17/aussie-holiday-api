@@ -40,6 +40,7 @@ kind: Deployment
 metadata:
   name: holiday-api-deployment
 spec:
+  serviceAccountName: holiday-app-sa
   selector:
     matchLabels:
       app: holiday-api
