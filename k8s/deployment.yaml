@@ -51,6 +51,13 @@ spec:
     spec:
       containers:
       - name: holiday-api
-        image: 140994323853.dkr.ecr.us-west-2.amazonaws.com/dreamteam:v4
+        image: 140994323853.dkr.ecr.us-west-2.amazonaws.com/dreamteam:v5
         ports:
          - containerPort: 8080
+  ---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: holiday-app-sa
+  annotations:
+    eks.amazonaws.com/role-arn: 'arn:aws:iam::140994323853:role/IRSA-SecretManagerReadOnlyRole'
