@@ -52,7 +52,7 @@ spec:
       serviceAccountName: holiday-app-sa
       containers:
       - name: holiday-api
-        image: 140994323853.dkr.ecr.us-west-2.amazonaws.com/dreamteam:v4
+        image: 140994323853.dkr.ecr.us-west-2.amazonaws.com/dreamteam:v7
         ports:
          - containerPort: 8080
 ---
